@@ -8,7 +8,7 @@ const port = process.env.PORT||3000
 app.get('/',async(req,res)=>res.json(await scrapper.getHomePage()))
 
 app.get('/search/:anime',async(req,res)=>res.json(await scrapper.getSearchResults(req.params['anime'])))
-
+app.get('/lastep/:anime',async(req,res)=>res.json({"lastep":await scrapper.getanimeinfopage(req.params['anime'])}))
 app.get('/:anime/:epno',
     async(req,res)=>res.json({"episodelink":await stscr.getanime_ep(req.params['anime'],req.params['epno'])}))
     

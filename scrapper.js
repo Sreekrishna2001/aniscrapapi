@@ -99,4 +99,15 @@ let jsonconverter=(rawsearchres)=>{
     return fjson
 }
 
-export default {getHomePage,getSearchResults,getanimeep,getvidlink}
+let getanimeinfopage = async(anime)=>{
+    const res = await fetch(`https://gogoanime.pe/category/${anime}`)
+    let $ = cheerio.load(await res.text())
+    let ul = $('.active').text().split("-")      
+    let lastep = ul[ul.length -1]
+    // let aniinfo = {}
+    // let ps = $('.anime_info_body_bg').html()
+    // console.log(ps);
+    return lastep
+}
+getanimeinfopage("jujutsu-kaisen-tv")
+export default {getHomePage,getSearchResults,getanimeep,getvidlink,getanimeinfopage}
